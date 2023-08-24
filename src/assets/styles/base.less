@@ -1,0 +1,78 @@
+:root {
+  --font-size: 18px;
+  --text-color: #fff;
+  --border-color: #e4e4e4;
+  --background-color: #111111;
+  --font-family: "Bricolage Grotesque", sans-serif;
+  --primary-color: #003ff3;
+  --secondary-color: #ff7700;
+  --tertiary-color: #d300d3;
+  --quaternary-color: #d30000;
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+.secondary-color {
+  color: var(--secondary-color);
+}
+
+.tertiary-color {
+  color: var(--tertiary-color);
+}
+
+.quaternary-color {
+  color: var(--quaternary-color);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--secondary-color);
+  color: var(--text-color);
+  border-radius: 0.5rem;
+  border: 1px solid var(--text-color);
+  outline: none;
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--quaternary-color), var(--tertiary-color), var(--secondary-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media screen and (max-width: 768px) {
+  .btn:hover {
+    background: var(--secondary-color);
+    color: var(--text-color);
+    border-color: var(--text-color);
+  }
+}

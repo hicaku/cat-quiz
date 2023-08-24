@@ -1,0 +1,74 @@
+.answers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    color: var(--secondary-color);
+    .carousel {
+        width: 75%;
+        flex-basis: 75%;
+        background: var(--primary-color);
+        border: 1px solid var(--secondary-color);
+        border-radius: 1rem;
+        &-item {
+            padding: 1rem 3rem;
+            
+            img {
+                width: 15rem;
+                height: 10rem;
+            }
+            .wrapper {
+                margin-top: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                position: relative;
+            }
+            .message {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+        &__icon {
+            color: var(--secondary-color);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .answers {
+        .carousel {
+            width: 100%;
+            flex-basis: 100%;
+            height: 100%;
+            border-radius: 0;
+            font-size: 1.5rem;
+            &__viewport, &__track, &__slide {
+                height: 100%;
+            }
+            &-item {
+                padding: 1rem 2rem;
+                gap: 1rem;
+                flex-direction: column;
+                img {
+                    width: 100%;
+                    height: auto;
+                    max-height: 200px;
+                    margin-bottom: 1rem;
+                }
+                .wrapper {
+                    flex-direction: column;
+                }
+                .message {
+                    position: relative;
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
