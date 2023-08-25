@@ -11,7 +11,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 0;
+        padding: 1rem;
         height: 3rem;
         font-style: italic;
     }
@@ -86,13 +86,8 @@
 
 @media screen and (max-width: 768px) {
     .quiz {
+        padding: 0 1rem;
         &-wrapper {
-            .quiz-header {
-                justify-content: center;
-                div {
-                    display: none;
-                }
-            }
             .wrapper {
                 .quiz-question {
                     width: 100%;
@@ -120,7 +115,7 @@
             left: 0;
             transform: unset;
             width: unset;
-            height: 100dvh;
+            height: 95vh;
             border-radius: 0;
         }
     }
