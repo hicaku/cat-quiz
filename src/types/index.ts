@@ -4,5 +4,5 @@ export type Question = {
 	answers: string[];
 	correctAnswerIndex: number;
 	description: string;
-	isAnsweredRight: boolean;
+	userAnswer: number;
 };

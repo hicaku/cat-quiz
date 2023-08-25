@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useMainStore } from "@/stores/main";
-import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Navigation } from "vue3-carousel";
 import HeaderMenu from "@/components/HeaderMenu.vue";
 
 const store = useMainStore();
@@ -11,33 +9,40 @@ const { quizQuestions } = store;
 <template>
 	<main class="answers">
 		<HeaderMenu />
-		<div class="carousel-wrapper">
-			<Carousel
-				class="carousel"
-				:items-to-show="1"
-				:transition="500"
-				:wrap-around="false"
-				:mouse-drag="true"
-				:touch-drag="true"
-			>
-				<Slide
-					class="carousel-item"
-					v-for="(question, index) in quizQuestions"
+		<div
+			class="answers-question"
+			v-for="(question, index) in quizQuestions"
+			:key="index"
+		>
+			<h3 class="question">{{ question.question }}</h3>
+			<ul class="answers">
+				<li
+					v-for="(answer, index) in question.answers"
 					:key="index"
+					class="answer"
 				>
-					<p class="message">
-						<span v-if="question.isAnsweredRight">✔️ You were correct</span>
-						<span v-else>❌ You were incorrect</span>
-					</p>
-					<div class="wrapper">
-						<img :src="`questionImages/${index + 1}.png`" alt="question" />
-						<p>{{ question.description }}</p>
-					</div>
-				</Slide>
-				<template #addons>
-					<Navigation />
-				</template>
-			</Carousel>
+					<button
+						class="btn"
+						:class="{ 'correct-answer': index === question.correctAnswerIndex }"
+						disabled
+					>
+						<b
+							><span
+								v-if="
+									index === question.correctAnswerIndex &&
+									question.userAnswer === question.correctAnswerIndex
+								"
+								>✔️</span
+							>
+							<span v-else-if="index === question.userAnswer">❌</span>
+							{{ answer }}
+						</b>
+					</button>
+				</li>
+			</ul>
+			<p class="description">
+				{{ question.description }}
+			</p>
 		</div>
 	</main>
 </template>

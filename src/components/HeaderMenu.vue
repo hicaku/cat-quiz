@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import { RouterLink } from "vue-router";
 
 const store = useMainStore();
-const { quizScore } = storeToRefs(store);
+const { quizScore, currentQuestionId, isQuizFinished } = storeToRefs(store);
 </script>
 
 <template>
@@ -16,7 +16,8 @@ const { quizScore } = storeToRefs(store);
 			</h1>
 		</RouterLink>
 		<h1>
-			<span class="secondary-color">{{ quizScore }}</span> / 10
+			<span class="secondary-color">{{ quizScore }}</span> /
+			{{ currentQuestionId + +isQuizFinished }}
 		</h1>
 	</header>
 </template>

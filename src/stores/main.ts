@@ -11,7 +11,7 @@ export const useMainStore = defineStore("main", {
 				correctAnswerIndex: 3,
 				description:
 					"Cats are quadrupeds, meaning they walk on all four limbs.",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 			{
 				question: "How many toes does a cat have?",
@@ -19,7 +19,7 @@ export const useMainStore = defineStore("main", {
 				correctAnswerIndex: 1,
 				description:
 					"Cats have 5 toes on each of their front paws and 4 toes on each of their back paws. This adds up to 18 toes.",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 			{
 				question: "A 1 year old cat is equal to how many human years?",
@@ -27,7 +27,7 @@ export const useMainStore = defineStore("main", {
 				correctAnswerIndex: 3,
 				description:
 					"Cats age much faster than humans and live for a shorter amount of time. For instance when a cat is 1 year old, that actually equals to 15 human years!",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 			{
 				question: "Cats can jump how many times their own height?",
@@ -35,21 +35,15 @@ export const useMainStore = defineStore("main", {
 				correctAnswerIndex: 2,
 				description:
 					"Cats are very athletic animals. They can jump up to 6 times their own height!",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 			{
-				question:
-					"Do cats have more bones than humans? What is the difference?",
-				answers: [
-					"Yes, 24",
-					"Yes, 12",
-					"No, they have the same",
-					"No, they have less",
-				],
+				question: "How many more bones do cats have than humans?",
+				answers: ["24", "12", "6", "0"],
 				correctAnswerIndex: 0,
 				description:
 					"Cats have 24 more bones than humans. They have 230 bones, while humans have 206.",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 			{
 				question: "When did the first cat video was recorded?",
@@ -57,7 +51,7 @@ export const useMainStore = defineStore("main", {
 				correctAnswerIndex: 0,
 				description:
 					"The first cat video was recorded in 1894. It was a short film called 'Boxing Cats'.",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 			{
 				question:
@@ -66,7 +60,7 @@ export const useMainStore = defineStore("main", {
 				correctAnswerIndex: 1,
 				description:
 					"Mymains Stewart Gilligan (aka Stewie) measured 123 cm (48.5 in) long on 28 August 2010 to make him one of the largest domestic cats ever. Sadly, Stewie passed away in January 2013",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 			{
 				question: "How many years did the oldest cat in the world live?",
@@ -74,7 +68,7 @@ export const useMainStore = defineStore("main", {
 				correctAnswerIndex: 2,
 				description:
 					"The oldest cat to ever live was Creme Puff, a Texas cat who lived to be 38 years old and 3 days. Creme Puff was born in August 1967 and died in August 2005, according to Guinness World Records.",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 			{
 				question: "Which taste can cats NOT detect?",
@@ -82,7 +76,7 @@ export const useMainStore = defineStore("main", {
 				correctAnswerIndex: 0,
 				description:
 					"Cats cannot taste sweet things. This is because they lack the amino acids that taste buds use to detect sweet flavors.",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 			{
 				question: "Which Egyptian god has the head of a cat?",
@@ -90,7 +84,7 @@ export const useMainStore = defineStore("main", {
 				correctAnswerIndex: 1,
 				description:
 					"Bastet was the goddess of protection, pleasure, and the bringer of good health. She had the head of a cat and a slender female body.",
-				isAnsweredRight: false,
+				userAnswer: -1,
 			},
 		] as Question[],
 		currentQuestionId: 0 as number,
@@ -109,9 +103,9 @@ export const useMainStore = defineStore("main", {
 			this.currentQuestionId++;
 		},
 		checkAnswer(answer: number) {
+			this.currentQuestion.userAnswer = answer;
 			if (answer === this.currentQuestion.correctAnswerIndex) {
 				this.addScore();
-				this.currentQuestion.isAnsweredRight = true;
 			}
 			if (this.currentQuestionId < this.quizQuestions.length - 1)
 				return this.nextQuestion();
@@ -125,7 +119,7 @@ export const useMainStore = defineStore("main", {
 			this.currentQuestionId = 0;
 			this.isQuizFinished = false;
 			this.quizQuestions.forEach((question) => {
-				question.isAnsweredRight = false;
+				question.userAnswer = -1;
 			});
 		},
 	},
